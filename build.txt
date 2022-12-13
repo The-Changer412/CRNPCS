@@ -1,0 +1,3 @@
+displayName = Constant Randoms NPCs Spawning
+author = The Changer
+version = 0.1
