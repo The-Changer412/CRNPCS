@@ -1,0 +1,14 @@
+﻿Mods: {
+	CRNPCS: {
+		Config: {
+			Label: "Config"
+			Header: {
+				GeneralOptions: "General Options"
+			}
+			SpawnCooldown: {
+				Label: "Spawn NPC Cooldown"
+				Tooltip: "Change the cooldown of when a new random npc will spawn, in seconds."
+			}
+		}
+	}
+}
