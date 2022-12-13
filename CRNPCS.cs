@@ -1,3 +1,4 @@
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -20,8 +21,10 @@ namespace CRNPCS
 
 			if (spawnCounter >= Config.Instance.spawnCooldown)
 			{
-				Main.NewText("spawn me in");
-				Main.NewText(Main.time);
+				
+				Random rand = new Random();\
+				int npc = rand.Next(-65, 668);
+				NPC.NewNPC(Player.GetSource_NaturalSpawn(), (int)Player.position.X, (int)Player.position.Y, npc);
 				spawnCounter = 0;
 			}
 		}
