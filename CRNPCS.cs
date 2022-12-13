@@ -22,7 +22,7 @@ namespace CRNPCS
 			if (spawnCounter >= Config.Instance.spawnCooldown)
 			{
 				
-				Random rand = new Random();\
+				Random rand = new Random();
 				int npc = rand.Next(-65, 668);
 				NPC.NewNPC(Player.GetSource_NaturalSpawn(), (int)Player.position.X, (int)Player.position.Y, npc);
 				spawnCounter = 0;
