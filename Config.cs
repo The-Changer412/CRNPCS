@@ -15,7 +15,7 @@ namespace CRNPCS
 
         [Label("$Mods.CRNPCS.Config.SpawnCooldown.Label")]
         [Tooltip("$Mods.CRNPCS.Config.SpawnCooldown.Tooltip")]
-        [DefaultValue(600)]
+        [DefaultValue(5)]
         public int spawnCooldown;
     }
 }
