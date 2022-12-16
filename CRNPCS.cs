@@ -49,7 +49,7 @@ namespace CRNPCS
                         int YOffset = random.Next(-50, 50);
                         spawnednpc = NPC.NewNPC(player.GetSource_FromThis(), (int)player.position.X + XOffset, (int)player.position.Y + YOffset, npc);
                         //Talk(player.name + " Has rolled the dice, and got a " + Main.npc[spawnednpc].TypeName + " as his reward.", Color.HotPink);
-                        Talk(player.name + LocalizationLoader.GetOrCreateTranslation($"Mods.CRNPCS.Chat.SpawnedBefore") + Main.npc[spawnednpc].TypeName + LocalizationLoader.GetOrCreateTranslation($"Mods.CRNPCS.Chat.SpawnedAfter"), Color.HotPink);
+                        Talk(Language.GetTextValue($"Mods.CRNPCS.Chat.SpawnedBefore") + player.name + Language.GetTextValue($"Mods.CRNPCS.Chat.SpawnedMid") + Main.npc[spawnednpc].TypeName + Language.GetTextValue($"Mods.CRNPCS.Chat.SpawnedAfter"), Color.HotPink);
                     }
                     else
                     {
@@ -63,7 +63,7 @@ namespace CRNPCS
 		//spawn in the npcs for the server
 		public override void PostUpdateEverything()
         {
-			if (Main.netMode!= NetmodeID.SinglePlayer) 
+			if (Main.netMode == NetmodeID.Server) 
 			{
                 randomNPCspawner();
             }

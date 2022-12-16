@@ -6,7 +6,7 @@ namespace CRNPCS
 {
     public class CRNPCSCommand : ModCommand
     {
-        public override CommandType Type => CommandType.Chat;
+        public override CommandType Type => CommandType.World;
 
         public override string Command => "timer";
 
@@ -17,8 +17,7 @@ namespace CRNPCS
         public override void Action(CommandCaller caller, string input, string[] args)
         {
             int TimeLeft = Config.Instance.spawnCooldown * 60 - ModContent.GetInstance<CRNPCSsystem>().spawnerCounter;
-
-            ModContent.GetInstance<CRNPCSsystem>().Talk(LocalizationLoader.GetOrCreateTranslation("$Mods.CRNPCS.Chat.CommandBefore") +TimeLeft.ToString() + LocalizationLoader.GetOrCreateTranslation("$Mods.CRNPCS.Chat.CommandAfter"), Color.OrangeRed);
+            ModContent.GetInstance<CRNPCSsystem>().Talk(Language.GetTextValue($"Mods.CRNPCS.Chat.CommandBefore") +  TimeLeft.ToString() + Language.GetTextValue($"Mods.CRNPCS.Chat.CommandAfter"), Color.Coral);
         }
     }
 }

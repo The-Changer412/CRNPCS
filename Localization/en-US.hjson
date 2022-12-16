@@ -12,8 +12,9 @@
 		}
 		Chat: {
 			CommandBefore: "There are "
-			CommandAfer: " seconds left."
-			SpawnedBefore: " Has rolled the dice, and got a "
+			CommandAfter: " seconds left."
+			SpawnedBefore: "The player, "
+			SpawnedMid: ", has rolled the dice, and got a "
 			SpawnedAfter: " as his reward."
 		}
 	}
