@@ -1,36 +1,63 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.Chat;
 using Terraria.Localization;
+using System;
 
 namespace CRNPCS
 {
-	public class CRNPCS : Mod
+	public class CRNPCSsystem : ModSystem
 	{
-	}
+		//set up the variables
+		int counter = 0;
+		int spawnerCounter = 0;
+		int spawnednpc = 0;
+		Random random = new Random();
 
-    public class CRNPCSPlayer: ModPlayer
-	{
-
-        int spawnCounter = 0;
-		int count = 0;
-		public override void PostUpdate()
+		//function for saying something in the chat
+		public void Talk(string message, Color color)
 		{
-			count++; 
-			if (count % Main.frameRate == 0) {
-				spawnCounter++;
-            }
-
-			if (spawnCounter >= Config.Instance.spawnCooldown * 60)
+			if (Main.netMode == NetmodeID.SinglePlayer)
 			{
-				Random rand = new Random();
-				int npc = rand.Next(-65, 668);
-				NPC.NewNPC(Player.GetSource_NaturalSpawn(), (int)Player.position.X +rand.Next(-5, 5), (int)Player.position.Y + rand.Next(-2, 2), npc);
-				spawnCounter = 0;
+				Main.NewText(message, color);
+			}
+			else
+			{
+				ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(message), color);
 			}
 		}
-	}
+		//count down the timer till it's time to spawn in a random npc on all players
+		public override void PostUpdateEverything()
+        {
+            counter++;
+            if (counter >= 60)
+			{
+                spawnerCounter++;
+                counter = 0;
+			}
+
+			if (spawnerCounter >= Config.Instance.spawnCooldown * 60)
+			{
+				foreach (Player player in Main.player)
+				{
+					if (player.name != "")
+					{
+						int npc = random.Next(-65, 668);
+						int XOffset = random.Next(-50, 50);
+						int YOffset = random.Next(-50, 50);
+						spawnednpc = NPC.NewNPC(player.GetSource_FromThis(), (int)player.position.X + XOffset, (int)player.position.Y + YOffset, npc);
+						Talk(player.name + "Has spawned in a " + Main.npc[spawnednpc].FullName, Color.HotPink);
+					}
+					else
+					{
+						break;
+					}
+					spawnerCounter = 0;
+				}
+			}
+			base.PostUpdateEverything();
+        }
+    }
 }
