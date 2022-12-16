@@ -29,35 +29,54 @@ namespace CRNPCS
 			}
 		}
 		//count down the timer till it's time to spawn in a random npc on all players
-		public override void PostUpdateEverything()
+        public void randomNPCspawner()
         {
             counter++;
             if (counter >= 60)
-			{
+            {
                 spawnerCounter++;
                 counter = 0;
-			}
+            }
 
-			if (spawnerCounter >= Config.Instance.spawnCooldown * 60)
+            if (spawnerCounter >= Config.Instance.spawnCooldown * 60)
+            {
+                foreach (Player player in Main.player)
+                {
+                    if (player.name != "")
+                    {
+                        int npc = random.Next(-65, 668);
+                        int XOffset = random.Next(-50, 50);
+                        int YOffset = random.Next(-50, 50);
+                        spawnednpc = NPC.NewNPC(player.GetSource_FromThis(), (int)player.position.X + XOffset, (int)player.position.Y + YOffset, npc);
+                        Talk(player.name + " Has spawned in a " + Main.npc[spawnednpc].FullName, Color.HotPink);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    spawnerCounter = 0;
+                }
+            }
+        }
+
+		//spawn in the npcs for the server
+		public override void PostUpdateEverything()
+        {
+			if (Main.netMode!= NetmodeID.SinglePlayer) 
 			{
-				foreach (Player player in Main.player)
-				{
-					if (player.name != "")
-					{
-						int npc = random.Next(-65, 668);
-						int XOffset = random.Next(-50, 50);
-						int YOffset = random.Next(-50, 50);
-						spawnednpc = NPC.NewNPC(player.GetSource_FromThis(), (int)player.position.X + XOffset, (int)player.position.Y + YOffset, npc);
-						Talk(player.name + "Has spawned in a " + Main.npc[spawnednpc].FullName, Color.HotPink);
-					}
-					else
-					{
-						break;
-					}
-					spawnerCounter = 0;
-				}
-			}
+                randomNPCspawner();
+            }
 			base.PostUpdateEverything();
+        }
+
+        //spawn in the npcs for singleplayer
+        public override void PostUpdateWorld()
+        {
+            if (Main.netMode==NetmodeID.SinglePlayer)
+            {
+                randomNPCspawner();
+            }
+            base.PostUpdateWorld();
         }
     }
 }
