@@ -10,5 +10,11 @@
 				Tooltip: "Change the cooldown of when a new random npc will spawn, in minutes."
 			}
 		}
+		Chat: {
+			CommandBefore: "There are "
+			CommandAfer: " seconds left."
+			SpawnedBefore: " Has rolled the dice, and got a "
+			SpawnedAfter: " as his reward."
+		}
 	}
 }

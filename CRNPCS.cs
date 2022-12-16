@@ -12,7 +12,7 @@ namespace CRNPCS
 	{
 		//set up the variables
 		int counter = 0;
-		int spawnerCounter = 0;
+		public int spawnerCounter = 0;
 		int spawnednpc = 0;
 		Random random = new Random();
 
@@ -48,7 +48,8 @@ namespace CRNPCS
                         int XOffset = random.Next(-50, 50);
                         int YOffset = random.Next(-50, 50);
                         spawnednpc = NPC.NewNPC(player.GetSource_FromThis(), (int)player.position.X + XOffset, (int)player.position.Y + YOffset, npc);
-                        Talk(player.name + " Has spawned in a " + Main.npc[spawnednpc].FullName, Color.HotPink);
+                        //Talk(player.name + " Has rolled the dice, and got a " + Main.npc[spawnednpc].TypeName + " as his reward.", Color.HotPink);
+                        Talk(player.name + LocalizationLoader.GetOrCreateTranslation($"Mods.CRNPCS.Chat.SpawnedBefore") + Main.npc[spawnednpc].TypeName + LocalizationLoader.GetOrCreateTranslation($"Mods.CRNPCS.Chat.SpawnedAfter"), Color.HotPink);
                     }
                     else
                     {
