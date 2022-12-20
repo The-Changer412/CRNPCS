@@ -1,5 +1,5 @@
 Constant Randoms NPCs Spawning is a mod where Every 5 minutes (can be change in the config), a random npc will spawn in.
-you can type /timer into the game's chat "/timer" see how much time is left before random NPCs will spawn in.
+you can type "/timer" into the game's chat to see how much time is left before random NPCs will spawn in.
 
 Source Code: https://github.com/The-Changer412/CRNPCS
 My Series on the mod: https://www.youtube.com/playlist?list=PL-3h-4VmMqVUBfwIjZ6PTFqiiU6-RuvHO
