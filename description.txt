@@ -1,1 +1,5 @@
-Constant Randoms NPCs Spawning is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+Constant Randoms NPCs Spawning is a mod where Every 5 minutes (can be change in the config), a random npc will spawn in.
+
+Source Code: https://github.com/The-Changer412/CRNPCS
+
+My Series on the mod: https://www.youtube.com/playlist?list=PL-3h-4VmMqVUBfwIjZ6PTFqiiU6-RuvHO
